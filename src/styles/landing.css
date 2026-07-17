@@ -2,11 +2,44 @@
  * Landing (splash) page styles. Scoped to [data-has-hero] so ordinary docs
  * pages are untouched. Must hold up in both Starlight themes: the starfield
  * exists only in dark mode; light mode stays plain.
+ *
+ * Type: Starlight's font stack and --sl-text-* scale only, no custom
+ * font-family anywhere in this file.
+ * Alignment: one shared column (Starlight's own --sl-content-width panel).
+ * The hero is centered, deliberately the one exception; every chapter and
+ * the closing CTA share the same left-aligned column and never swap sides.
  */
 
-/* Hero: tighter, larger type; keep Starlight's layout. */
+/* Hide the docs nav/search/theme-toggle bar on the hero page only, and drop
+ * the space PageFrame reserves for it. Docs pages (no [data-has-hero]) are
+ * untouched. The hero's own Download + Get started actions, plus the
+ * "Where to start" section further down, keep people from being stranded
+ * without navigation. */
+[data-has-hero] header.header {
+	display: none;
+}
+
+[data-has-hero] .main-frame {
+	padding-top: 0;
+}
+
+/* Hero: centered at every breakpoint. Starlight's default hero splits into
+ * an asymmetric 7fr/4fr row and left-aligns text at >=50rem; override both
+ * so the hero reads the same on phones and desktops instead of flipping. */
 [data-has-hero] .hero {
+	grid-template-columns: 1fr;
 	padding-block: clamp(2.5rem, 8vh, 5.5rem);
+	text-align: center;
+}
+
+[data-has-hero] .hero .stack,
+[data-has-hero] .hero .copy {
+	align-items: center;
+	text-align: center;
+}
+
+[data-has-hero] .hero .actions {
+	justify-content: center;
 }
 
 [data-has-hero] .hero h1 {
@@ -18,6 +51,7 @@
 
 [data-has-hero] .hero .tagline {
 	max-width: 44ch;
+	margin-inline: auto;
 	font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
 	line-height: 1.55;
 	text-wrap: pretty;
@@ -28,6 +62,7 @@
 	border: 1px solid var(--sl-color-gray-5);
 	border-radius: 10px;
 	width: min(100%, 34rem);
+	margin-inline: auto;
 }
 
 /* Subtle star specks behind the hero, dark theme only. Deterministic dots,
@@ -67,33 +102,31 @@
 	color: var(--sl-color-gray-3);
 }
 
-/* Scroll chapters: one idea + one screenshot per fold, alternating sides on
- * wide viewports, stacked on narrow ones. */
+/* Scroll chapters: one idea + one screenshot per fold. Text is always the
+ * left column and the screenshot is always the right one on wide viewports —
+ * no per-chapter side alternation, so the eye tracks one shared column down
+ * the page instead of zig-zagging. */
 [data-has-hero] .pv-chapter {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 1.5rem 3rem;
 	align-items: center;
 	margin-top: clamp(3rem, 9vh, 6rem);
+	text-align: left;
 }
 
 @media (min-width: 60rem) {
 	[data-has-hero] .pv-chapter {
 		grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
 	}
-
-	/* Alternate the screenshot side chapter by chapter. */
-	[data-has-hero] .pv-chapter:nth-of-type(even) .pv-chapter-shot {
-		order: -1;
-	}
 }
 
 [data-has-hero] .pv-chapter-copy {
-	max-width: 52ch;
+	max-width: 36rem;
 }
 
 [data-has-hero] .pv-chapter-copy h2 {
-	font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem);
+	font-size: var(--sl-text-h2);
 	line-height: 1.15;
 	text-wrap: balance;
 }
@@ -105,34 +138,33 @@
 	height: auto;
 }
 
-/* Closing boundary chapter: text only, centered, room to breathe. */
+/* Closing boundary chapter: same left-aligned column and copy measure as the
+ * chapters above it, not a separately centered treatment. */
 [data-has-hero] .pv-chapter--closing {
 	grid-template-columns: 1fr;
-	justify-items: center;
-	text-align: center;
 }
 
 [data-has-hero] .pv-chapter--closing .pv-chapter-copy {
-	max-width: 58ch;
+	max-width: 36rem;
 }
 
-/* Reveal-on-scroll via CSS scroll-driven animations only: no JS, content is
- * fully visible when unsupported (Firefox/Safari today) or when the user
- * prefers reduced motion. Never gates visibility on a script. */
-@supports (animation-timeline: view()) {
-	@media (prefers-reduced-motion: no-preference) {
-		[data-has-hero] .pv-chapter {
-			animation: pv-rise both ease-out;
-			animation-timeline: view();
-			animation-range: entry 5% entry 45%;
-		}
-	}
-}
-
-@keyframes pv-rise {
-	from {
+/* Reveal-on-scroll: content is visible by default (no-JS, and while the page
+ * script hasn't run yet). The inline script in index.mdx adds `.reveal-init`
+ * to <html> before the chapters are parsed, so this hidden state never
+ * flashes over already-visible content, and prefers-reduced-motion drops
+ * the effect entirely rather than only the transform. */
+@media (prefers-reduced-motion: no-preference) {
+	html.reveal-init[data-has-hero] .pv-chapter {
 		opacity: 0;
 		transform: translateY(20px);
+		transition:
+			opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+			transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	html.reveal-init[data-has-hero] .pv-chapter.is-visible {
+		opacity: 1;
+		transform: none;
 	}
 }
 
@@ -142,6 +174,5 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: center;
 	gap: 1rem;
 }
