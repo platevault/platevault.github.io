@@ -3,12 +3,64 @@ title: Prepare inputs for PixInsight/WBPP
 description: Get a project's light frames, calibration, and processing tool ready — without PlateVault touching the actual processing.
 ---
 
-<!-- WRITER TODO: End-to-end guide from pointing at the PixInsight/WBPP
-executable through ingesting sessions/masters, attaching them to a project,
-launching the tool, and PlateVault recording produced artifacts. Reinforce
-the PixInsight boundary (PlateVault never calibrates/stacks/etc.).
-Ground truth:
-- CLAUDE.md constitution, Principle III (PixInsight Boundary)
-- docs/journeys/J05-project-lifecycle/journey.md (S5-S6, tool launch + artifacts)
-- docs/journeys/J08-calibration-ingest-masters-matching/journey.md (matching masters before launch)
-- Cross-link candidates: manual/projects-lifecycle.md, manual/calibration-masters.md -->
+PlateVault's job ends where PixInsight's begins. It never calibrates,
+debayers, registers, integrates, drizzles, stacks, or edits an image — it
+gets everything *ready*: the right sessions attached to a project, the
+right masters matched, the tool launched against the right folder, and the
+outputs recorded when WBPP is done. This guide walks that preparation end
+to end.
+
+## 1. Point PlateVault at the executable
+
+In **Settings → Processing Tools** (or in the setup wizard's Processing
+Tools step), configure the PixInsight/WBPP profile with the path to its
+executable. Tools are selectable profiles — Siril and planetary/lunar
+profiles configure the same way.
+
+## 2. Ingest the data
+
+- Light frames: through the [Inbox](../../manual/inbox/) —
+  [Ingest your first session](../ingest-first-session/) if this is new.
+- Calibration masters: build them in your processing tool as usual, then
+  ingest them through the same Inbox pipeline; each master registers as an
+  individually tracked item. See
+  [Calibration & masters](../../manual/calibration-masters/).
+
+## 3. Create the project and attach sessions
+
+Create a project with the PixInsight/WBPP profile
+([Projects & lifecycle](../../manual/projects-lifecycle/)). Its folder
+structure (`lights/`, `darks/`, `flats/`, …) is created inside your
+registered project-outputs root. Attach the confirmed sessions the project
+should use; the detail view's per-channel breakdown shows exactly what WBPP
+will get — sub-frame counts and integration time per filter.
+
+## 4. Match calibration masters
+
+For each attached session, review the ranked candidate masters on the
+Calibration page or from the project, and assign explicitly. Candidates
+show real context with confidence values and mismatch indicators; nothing
+is ever auto-assigned. Details:
+[Matching masters to sessions](../../manual/calibration-masters/#matching-masters-to-sessions).
+
+## 5. Launch
+
+Choose **Open in PixInsight** from the project. The tool launches against
+the project's working directory — the project's lifecycle state does not
+change, and a working directory outside every registered root refuses to
+launch rather than spawning somewhere unexpected.
+
+From here, everything is PixInsight: run WBPP over the prepared inputs as
+you normally would.
+
+## 6. Let PlateVault record what came out
+
+While the project is open, files WBPP writes into the project's output
+folder are recorded automatically as artifacts, each with a kind
+(intermediate / master / final) and a confidence level. Outputs written
+while the project was closed are picked up on the next open. PlateVault
+never modifies or deletes an artifact — it only observes.
+
+Those recorded intermediates are what the
+[cleanup flow](../plan-a-cleanup/) later offers to reclaim, once your
+masters and finals have superseded them.
