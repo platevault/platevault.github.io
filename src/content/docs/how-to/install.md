@@ -58,6 +58,11 @@ Pick the format your distribution prefers:
    for an app distributed outside the App Store without notarization, and
    it is only needed once.
 
+:::note[Roadmap]
+macOS distribution via a Homebrew cask. See the
+[Roadmap](../../reference/roadmap/).
+:::
+
 ## Verifying a download
 
 Every release asset has a matching `.sig` file: a minisign signature made

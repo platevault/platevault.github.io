@@ -44,7 +44,10 @@ export default defineConfig({
 				},
 				{
 					label: 'Reference',
-					items: [{ label: 'Screenshots TODO', slug: 'reference/screenshots-todo' }],
+					items: [
+						{ label: 'Roadmap', slug: 'reference/roadmap' },
+						{ label: 'Screenshots TODO', slug: 'reference/screenshots-todo' },
+					],
 				},
 			],
 		}),
