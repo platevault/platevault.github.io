@@ -40,23 +40,23 @@ files are not eagerly read end to end.
 
 ## Equipment
 
-Register the gear you own so metadata can resolve against it:
+Register the gear you own:
 
 - **Cameras** and **Telescopes** — name plus comma-separated aliases
   matching the strings your capture software writes into FITS headers
   (e.g. `INSTRUME`); telescopes also take a focal length in millimeters.
   Manually added entries carry a "Manual" source badge, distinct from
   "Auto-detected".
-- **Optical trains** — a name, a focal length, and optionally a registered
-  camera and/or telescope; either link may be left unset.
+- **Optical trains** — a name, a focal length, and the registered camera
+  and telescope that make up the train; a train requires its parts.
 - **Filters** — seeded with Ha, SII, OIII, NII, L, R, G, B, HO, SO, and
   UV/IR Cut; edit, remove, or add entries with a category (narrowband /
-  broadband / dual-band / other / custom). Duplicate filter names are
-  rejected.
+  broadband / dual-band / other / custom).
 
-A blank name or a non-numeric focal length is rejected inline before any
-request is sent. A camera or telescope still referenced by an optical train
-cannot be removed — the pane blocks the attempt with an "in use" message.
+A blank name, a non-numeric focal length, or a duplicate name or alias is
+rejected inline before any request is sent. A camera or telescope still
+referenced by an optical train cannot be removed — the pane blocks the
+attempt with an "in use" message.
 Every equipment create, edit, or removal — applied or refused — writes
 exactly one audit row; merely viewing the pane writes none.
 
@@ -68,8 +68,9 @@ exactly one audit row; merely viewing the pane writes none.
   inline. The first site added becomes both **Default** and **Active**;
   with several sites, the Active/Default pills move independently, and
   every planner surface recomputes for the newly active site without a
-  restart. Deleting the active or default site reassigns the pointers to a
-  remaining site automatically, or falls back to the no-site state.
+  restart. Deleting the active or default site asks you to pick a
+  replacement when more than one candidate remains; deleting the last site
+  returns the planner to its no-site state.
 - **Usable-altitude threshold** — 0–90°, default 30°; drives the planner's
   imaging-time and visible-tonight columns.
 - **Moon-avoidance bands** — per-band distance/width values for the seven
@@ -90,9 +91,9 @@ these values drive.
 - **Restart guided flow** — restarts the guided tour; distinct from the
   setup-wizard restart.
 - **Reset preferences** — resets UI preferences.
-- **Restore defaults** — offered per pane (Data Sources, Ingestion, Naming
-  & Structure, Calibration Matching, Target Planner, Cleanup, Advanced);
-  resets that pane's settings and refetches, so the visible fields change.
+- **Restore defaults** — offered on every pane backed by default values;
+  states which settings it resets, then resets them and refetches, so the
+  visible fields change.
 
 The Cleanup pane also holds **Block permanent delete**, which makes the
 backend refuse every permanent-deletion attempt (see

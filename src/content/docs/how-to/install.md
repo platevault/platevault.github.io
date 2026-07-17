@@ -65,7 +65,9 @@ macOS distribution via a Homebrew cask. See the
 
 ## Verifying a download
 
-Every release asset has a matching `.sig` file: a minisign signature made
-with the same release keypair the in-app updater verifies against. Checking
-it is optional for a first install; every subsequent in-app update is
-verified automatically before anything is installed.
+The Windows and Linux installers each ship with a matching `.sig` file: a
+minisign signature made with the same release keypair the in-app updater
+verifies against. (The macOS dmg has no detached signature; its update
+artifact carries one.) Checking a signature is optional for a first
+install; every subsequent in-app update is verified automatically before
+anything is installed.

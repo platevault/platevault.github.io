@@ -16,7 +16,7 @@ folder and never deletes any of them.
 
 ### 1. Source Folders
 
-Add folders in four categories, each via the native OS folder picker:
+Add folders in four categories:
 
 | Category | Required | Organization choice |
 | --- | --- | --- |
@@ -44,8 +44,10 @@ later in **Settings → Processing Tools**.
 
 Confirm or adjust basic defaults, including the default protection level
 (protected / normal / unprotected) applied to newly registered sources.
-Left untouched, new sources default to **protected**, which shields their
-files from cleanup plans until you decide otherwise.
+Left untouched, new sources register as **protected** — shielded from
+cleanup plans until you decide otherwise — except inbox folders, which
+register as **normal**, since their whole purpose is to have files moved
+out of them.
 
 ### 4. Observing Site
 
@@ -58,9 +60,8 @@ twilight and horizon settings live in **Settings → Target Planner**.
 
 ### 5. Confirm
 
-Review the full summary: every folder with its category, organization state,
-and scan depth, plus enabled processing tools and a "what happens next"
-note. Proceeding here is what registers every source with the backend and
+Review the full summary: every folder with its category and organization
+state, plus enabled processing tools and a "what happens next" note. Proceeding here is what registers every source with the backend and
 starts scanning. If any folder fails to register (missing, not a directory,
 unreadable), the wizard shows a batch-failure message and does not advance.
 

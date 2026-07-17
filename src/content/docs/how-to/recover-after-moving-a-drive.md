@@ -33,8 +33,7 @@ performs no file movement — it only reads.
 ## 4. Apply the remap
 
 Click **Apply remap**. PlateVault persists the new path in its own record
-(the backend re-verifies the path server-side before accepting it) and
-writes a durable audit row recording the old→new path. Sessions, projects,
+and writes a durable audit row recording the old→new path. Sessions, projects,
 and calibration relationships under the root are intact — they were always
 stored relative to the root, never as absolute paths.
 
