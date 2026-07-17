@@ -9,8 +9,6 @@ sessions that need calibration. It never builds a master itself; masters
 come from your processing tool and enter the library through the
 [Inbox](../inbox/) like everything else.
 
-![Screenshot: calibration master detail and candidate sessions](../../../assets/screenshots/calibration-masters.svg)
-
 ## Ingesting masters
 
 Point a calibration root at your master files and ingest through the normal
@@ -28,6 +26,8 @@ with an ordinary name never appears as a master. Confirming and applying
 registers each master into the calibration store as its own item.
 
 ## The Calibration page
+
+![The Calibration list: one row per master with kind-conditional fingerprint columns, not-applicable markers, and unresolved chips](../../../assets/screenshots/calibration-masters.svg)
 
 One row per master file. Fingerprint columns (gain, temperature, binning,
 filter) are kind-conditional: a column that does not apply to a kind — a
@@ -57,6 +57,8 @@ each with its context (target, filter, night, frame count), a confidence
 value, and mismatch indicators. A session that fails a hard rule (wrong
 gain, for instance) is shown with its mismatch flagged, never silently
 hidden; absent context renders as unresolved.
+
+![Ranked candidate sessions for a master: context, confidence values, and a flagged hard-rule mismatch](../../../assets/screenshots/calibration-matching.svg)
 
 Assignment is always explicit — matching never auto-applies one.
 Confirming records it, updates the Used-by list, and answers back; the

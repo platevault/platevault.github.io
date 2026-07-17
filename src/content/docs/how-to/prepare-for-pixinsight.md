@@ -38,7 +38,11 @@ will get — sub-frame counts and integration time per filter.
 For each attached session, review the ranked candidate masters on the
 Calibration page or from the project, and assign explicitly. Candidates
 show real context with confidence values and mismatch indicators; nothing
-is ever auto-assigned. Details:
+is ever auto-assigned.
+
+![Ranked candidate masters for a session, each with context, a confidence value, and mismatch indicators](../../../assets/screenshots/calibration-matching.svg)
+
+Details:
 [Matching masters to sessions](../../manual/calibration-masters/#matching-masters-to-sessions).
 
 ## 5. Launch

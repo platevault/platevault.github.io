@@ -8,7 +8,7 @@ planner: the objects you have decided to track, findable by any of their
 names, with real astronomy for tonight computed for your configured
 observing site.
 
-![Screenshot: target detail with tonight's astronomy](../../../assets/screenshots/targets-planning.svg)
+![The Targets list with tonight's planner columns: max altitude, altitude sparkline, visibility, lunar separation, and recommended filters](../../../assets/screenshots/targets-planning.svg)
 
 ## The target list
 
@@ -42,6 +42,8 @@ target never creates a duplicate, and an unresolvable name never fabricates
 one. Resolved lookups are cached, so the same name resolves instantly next
 time.
 
+![The Add-target search: local suggestions listed, with the SIMBAD lookup and Search-more-catalogues fallbacks visible](../../../assets/screenshots/targets-add-search.svg)
+
 ## Target identity
 
 A target's detail panel shows its real identity data: designation, type,
@@ -65,6 +67,8 @@ time, and Opposition. The values change when the site or date changes.
 **Why this guidance** opens from the row or the detail panel, names the
 per-filter thresholds behind the recommendation, and closes on Escape or an
 outside click.
+
+![The Why-this-guidance panel naming the per-filter altitude and Moon-separation thresholds behind the recommendation](../../../assets/screenshots/targets-why-guidance.svg)
 
 Without a configured site, these columns state that they need one — they
 never render a plausible-looking number that was not actually computed.

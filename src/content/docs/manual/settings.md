@@ -15,7 +15,7 @@ Every pane auto-saves — there is no global Save button. A change takes
 effect at the control immediately, survives a restart, and (for
 durable-data settings) is discoverable afterward in the Audit Log.
 
-![Screenshot: Settings Appearance pane](../../../assets/screenshots/settings.svg)
+![The Appearance pane: theme choices, density, and font size](../../../assets/screenshots/settings.svg)
 
 ## Appearance
 
@@ -60,6 +60,8 @@ attempt with an "in use" message.
 Every equipment create, edit, or removal — applied or refused — writes
 exactly one audit row; merely viewing the pane writes none.
 
+![The Equipment pane: cameras, telescopes, optical trains, and filters, with Manual and Auto-detected source badges](../../../assets/screenshots/settings-equipment.svg)
+
 ## Target Planner
 
 - **Observing sites** — add sites with name, latitude, longitude, IANA
@@ -77,6 +79,8 @@ exactly one audit row; merely viewing the pane writes none.
   fixed bands (L, R, G, B, Ha, SII, OIII), committed on blur/Enter, with a
   Restore Defaults control. The bands are a built-in taxonomy, independent
   of the filters registered under Equipment.
+
+![The Target Planner pane: observing sites with Active and Default pills, the usable-altitude threshold, and the per-band Moon-avoidance table](../../../assets/screenshots/settings-target-planner.svg)
 
 See [Targets & planning](../targets-planning/#tonights-astronomy) for what
 these values drive.
@@ -107,6 +111,8 @@ refused / failed), and actor, with before→after value pairs for settings
 changes. It answers "what did PlateVault actually do (or refuse to do)?"
 after an unattended scan, a plan apply, or a forgotten background
 operation.
+
+![The Audit Log: rows with timestamp, event, entity, applied/refused/failed outcome, and before-and-after values](../../../assets/screenshots/settings-audit-log.svg)
 
 The log records committed changes, not noise: rapidly typing in the Naming
 pattern builder produces one row at the final value, not one per keystroke,

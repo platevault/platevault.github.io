@@ -10,7 +10,7 @@ You can re-run the wizard at any time from **Settings → Advanced → Restart
 first-run setup** (confirm-gated); a restart pre-fills every registered
 folder and never deletes any of them.
 
-![Screenshot: setup wizard Source Folders step](../../../assets/screenshots/setup-wizard.svg)
+![The setup wizard's Source Folders step with folders added in each category](../../../assets/screenshots/setup-wizard.svg)
 
 ## The six steps
 
@@ -62,7 +62,11 @@ twilight and horizon settings live in **Settings → Target Planner**.
 
 Review the full summary: every folder with its category and organization
 state, plus enabled processing tools and a "what happens next" note. Proceeding here is what registers every source with the backend and
-starts scanning. If any folder fails to register (missing, not a directory,
+starts scanning.
+
+![The wizard's Confirm step: every folder listed with category and organization state, ready to register](../../../assets/screenshots/setup-wizard-confirm.svg)
+
+If any folder fails to register (missing, not a directory,
 unreadable), the wizard shows a batch-failure message and does not advance.
 
 ### 6. Scan
@@ -77,6 +81,8 @@ persists: relaunching the app never shows setup again.
 Every registered source appears as a card in **Settings → Data Sources**.
 Each lifecycle action below answers back at the control and writes a durable
 audit row (see the [Audit Log](../settings/#audit-log)).
+
+![Settings → Data Sources: one card per registered source with Rescan, Remap, Disable, Delete, and protection controls](../../../assets/screenshots/data-sources.svg)
 
 - **Rescan** — re-runs the scan without re-prompting for a path, with an
   explicit started→finished signal and a count delta.

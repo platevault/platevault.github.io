@@ -47,6 +47,8 @@ Open **Review plans (N)** to verify: every action reads as **catalogue in
 place**, with destination equal to source. The Archive-vs-Trash destructive
 control is absent, because nothing in the plan is destructive.
 
+![A catalogue-in-place plan under review: every action's destination equals its source](../../../assets/screenshots/plan-review-catalogue.svg)
+
 ## 5. Apply and verify nothing moved
 
 Apply the plan. The catalogue action writes the files' identity and

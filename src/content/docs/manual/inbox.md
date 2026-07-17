@@ -9,7 +9,7 @@ catalogued where it already sits. Passing the gate requires a
 classification you can inspect, and touching disk requires a plan you have
 reviewed and applied.
 
-![Screenshot: Inbox confirm gate](../../../assets/screenshots/inbox.svg)
+![The Inbox queue after a rescan: a mixed source folder split into single-type items, with the per-file detail panel open](../../../assets/screenshots/inbox.svg)
 
 ## The queue
 
@@ -43,6 +43,8 @@ is flagged **needs review**: a banner names exactly what is missing,
 affected rows carry a "needs *attribute*" badge, and Confirm stays disabled
 — the backend independently rejects a confirm attempt on such an item.
 
+![An Inbox item flagged needs review: the banner names the missing attribute and Confirm is disabled](../../../assets/screenshots/inbox-needs-review.svg)
+
 To resolve it, select the affected files and set the missing value (frame
 type, filter, exposure, or binning) in one bulk action; the applied count is
 reported. Once every file has the value, the item re-partitions into a clean
@@ -51,6 +53,8 @@ source pill distinct from FITS-derived values) and survive later rescans.
 Resolving a value only changes PlateVault's index — source file bytes are
 never rewritten.
 
+![The bulk reclassify action: several files selected, a value picker open to set the missing attribute in one step](../../../assets/screenshots/inbox-reclassify.svg)
+
 ## Choosing a destination
 
 When more than one registered library root can receive an item's frame
@@ -58,6 +62,8 @@ type, the item's destination-root control lists them and defaults to
 **Auto**. With exactly one valid root, no picker is shown. If Auto cannot
 resolve a single root at confirm time, you are prompted to choose — nothing
 is confirmed to an ambiguous root silently.
+
+![An item's destination-root control listing multiple eligible library roots, with Auto selected](../../../assets/screenshots/inbox-destination-root.svg)
 
 ## Confirm, review, apply
 
@@ -72,6 +78,8 @@ is confirmed to an ambiguous root silently.
    A plan whose source file changed on disk since confirm is refused as
    stale rather than applied outdated; a destination collision is refused
    rather than overwritten.
+
+![The plan review overlay: each planned move listing its full source and destination path, with Apply and Discard controls](../../../assets/screenshots/plan-review.svg)
 
 After an apply, the inbox badge and counters decrement for the moved files,
 the new [Sessions](../sessions/) rows appear automatically, and the applied

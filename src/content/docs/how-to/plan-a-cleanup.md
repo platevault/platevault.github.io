@@ -24,12 +24,16 @@ destinations are the Archive folder or the OS trash, both recoverable.
    cleanup candidates**. The read-only preview groups candidates by kind
    with size, confidence, and a reclaimable total; nothing on disk changes
    from scanning.
+
+   ![The cleanup scan preview: candidates grouped by kind, protected items locked, reclaimable total shown](../../../assets/screenshots/cleanup-scan-preview.svg)
 2. Pick the destination: **Archive folder** (default) or **System trash**.
    The choice is fixed once the plan is generated.
 3. Click **Generate cleanup plan**. The review overlay lists every item
    1:1 with the candidates; acknowledge any protected item individually
    before **Approve & apply** enables. **Discard** backs out with disk
    untouched.
+
+   ![The review overlay: a protected item's acknowledgement pending, Approve & apply disabled until it is given](../../../assets/screenshots/cleanup-archive.svg)
 4. Click **Approve & apply**. Live progress shows "Applying N of M…", and
    each item's outcome (succeeded / failed with reason) is visible
    afterward.

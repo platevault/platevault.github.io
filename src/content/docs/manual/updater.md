@@ -13,7 +13,7 @@ running, as one of these states:
 - "Update available: version {version}"
 - a failed check, reported as a failure — never disguised as "up to date"
 
-![Screenshot: Settings → Advanced update available](../../../assets/screenshots/updater.svg)
+![Settings → Advanced showing an available update and the Install & Restart action](../../../assets/screenshots/updater.svg)
 
 ## Installing an update
 

@@ -30,6 +30,8 @@ performs no file movement — it only reads.
 - Editing the path after a successful Verify invalidates it — Apply remap
   disables again until a fresh Verify runs against the edited path.
 
+![The Remap dialog after a successful Verify: match count reported and Apply remap enabled](../../../assets/screenshots/remap-verify.svg)
+
 ## 4. Apply the remap
 
 Click **Apply remap**. PlateVault persists the new path in its own record

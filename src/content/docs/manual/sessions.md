@@ -9,7 +9,7 @@ library index. There is nothing to approve here: the [Inbox](../inbox/)
 confirm gate you already passed is the only gate. The page carries no
 Confirm, Re-open, Reject, or Ignore control and no review-state pill.
 
-![Screenshot: Sessions list and detail](../../../assets/screenshots/sessions.svg)
+![The Sessions list with a session's detail panel open beside it](../../../assets/screenshots/sessions.svg)
 
 ## Where rows come from
 

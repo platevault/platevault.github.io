@@ -13,8 +13,6 @@ This page covers file-level cleanup. Archiving a *whole project* is part of
 the project lifecycle — see
 [Projects & lifecycle](../projects-lifecycle/#archiving-a-finished-project).
 
-![Screenshot: cleanup plan review](../../../assets/screenshots/cleanup-archive.svg)
-
 ## Protected files
 
 Every source carries a protection level — the default set in the
@@ -37,6 +35,8 @@ candidates**. The result is a read-only preview:
 
 Scanning creates no plan and moves no file; scanning twice on an unchanged
 project returns the same result.
+
+![A cleanup scan preview: candidates grouped by kind with size and confidence, protected items locked, and the reclaimable total](../../../assets/screenshots/cleanup-scan-preview.svg)
 
 ## Scanning session raw sub-frames
 
@@ -70,6 +70,8 @@ and opens the review overlay:
 - any protected item must be acknowledged individually before **Approve &
   apply** enables;
 - **Discard** closes with disk untouched.
+
+![The cleanup plan review overlay: every item listed, a protected item's acknowledgement pending, Approve & apply still disabled](../../../assets/screenshots/cleanup-archive.svg)
 
 Applying shows live per-item progress ("Applying N of M…") and afterward
 each item's outcome — succeeded, or failed with a reason. A plan is never

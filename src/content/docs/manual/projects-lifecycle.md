@@ -9,7 +9,7 @@ launchable processing tool, and automatic tracking of the outputs that tool
 writes. When the work is finished, the same project moves through an
 audited archive lifecycle.
 
-![Screenshot: project detail with attached sessions and manifests](../../../assets/screenshots/projects-lifecycle.svg)
+![A project detail: attached sessions, per-channel sub-frame counts and integration time, and the manifest list](../../../assets/screenshots/projects-lifecycle.svg)
 
 ## Creating a project
 
@@ -23,6 +23,8 @@ planetary/lunar). On create:
   created automatically inside your registered project-outputs root — never
   anywhere else;
 - you return to the projects list with the new project present.
+
+![The project-creation wizard: name field and processing-tool profile choice](../../../assets/screenshots/project-create.svg)
 
 A name that collides with an existing project (case-insensitively) is
 rejected at the name field on submit — no project and no folders are
@@ -89,6 +91,8 @@ Archiving follows the same plan discipline as every other mutation:
    failed or unapplied plan leaves the lifecycle and editability unchanged,
    and apply never overwrites an existing destination file.
 
+![An archive plan under review: items with source and destination, and a protected item awaiting its per-item acknowledgement](../../../assets/screenshots/project-archive-plan.svg)
+
 ## The Archive page
 
 Archived projects appear on the Archive page as rows with type, reason,
@@ -96,6 +100,8 @@ size, and archived date — searchable by name, reason, or original path, and
 sortable on every column; missing values render as unresolved, never a
 fabricated `0`. Selecting a row shows the project's name, entity type,
 original path, and its dated audit history.
+
+![The Archive page: archived entries with type, reason, size and date, and the Send-to-trash and Delete-permanently actions](../../../assets/screenshots/archive-page.svg)
 
 Two removal actions follow, in increasing severity:
 
