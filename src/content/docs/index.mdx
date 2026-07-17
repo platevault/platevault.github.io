@@ -14,12 +14,54 @@ hero:
       icon: download
 ---
 
-{/* WRITER TODO: Landing page. Cover: what PlateVault is (organizes/plans/
-audits, does not process images), the three core promises (local-first file
-custody, reviewable filesystem mutation, durable audit trail — see the
-Constitution's Principles I/II in CLAUDE.md), the supported-platforms table
-(Windows x64, Linux x64, macOS Apple Silicon; Intel macOS unsupported), and
-"where to start" links into Manual/How-to.
-Ground truth: PRODUCT.md, CLAUDE.md constitution (Principles I-III),
-docs/journeys/README.md (cross-cutting reviewable-filesystem-mutation and
-answer-back rules restated once there). */}
+## What PlateVault is
+
+PlateVault is a desktop application that organizes an astrophotography
+library: acquisition sessions, calibration masters, targets, processing
+projects, and the cleanup and archive decisions that keep a large library
+manageable. It indexes your files where they already live, maps the
+relationships between them, prepares tool-friendly project inputs, and plans
+filesystem work for your review.
+
+PlateVault never processes images. Calibration, debayering, registration,
+stacking, and editing belong to PixInsight/WBPP and comparable tools.
+PlateVault organizes, maps, prepares, audits, and plans filesystem work —
+nothing more.
+
+## Three promises
+
+1. **Local-first file custody.** Your image files stay where they are, on
+   your disks, in your folder structure. PlateVault stores metadata,
+   relationships, and decisions in its own database and never copies your
+   library into a private store. Library roots are tracked separately from
+   relative paths, so a moved drive can be remapped without rewriting
+   history.
+2. **Reviewable filesystem mutation.** Every move, copy, archive, or delete
+   is proposed as a plan first. Only approving and applying a plan touches
+   disk, nothing is overwritten silently, and destructive operations prefer
+   archive or trash over permanent deletion.
+3. **A durable audit trail.** Every applied action — and every refused or
+   failed one — is recorded with its outcome and actor, so you can always
+   reconstruct what happened to your library.
+
+## Supported platforms
+
+| Platform | Support |
+| --- | --- |
+| Windows x64 | Supported — NSIS installer or MSI |
+| Linux x64 | Supported — AppImage, deb, or rpm |
+| macOS Apple Silicon | Supported — dmg |
+| macOS Intel | Not supported |
+
+## Where to start
+
+- Fresh machine: [Install PlateVault](how-to/install/), then let the
+  [setup wizard](manual/setup-wizard/) register your folders.
+- First night of data: [Ingest your first session](how-to/ingest-first-session/).
+- Library that is already organized on disk:
+  [Organize an existing messy library](how-to/organize-existing-library/).
+- Ready to process: [Prepare inputs for PixInsight/WBPP](how-to/prepare-for-pixinsight/).
+- Running out of disk: [Plan a cleanup safely](how-to/plan-a-cleanup/).
+
+The Manual describes each page of the application; the How-to guides walk
+through complete tasks end to end.
