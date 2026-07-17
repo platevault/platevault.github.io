@@ -1,0 +1,147 @@
+/*
+ * Landing (splash) page styles. Scoped to [data-has-hero] so ordinary docs
+ * pages are untouched. Must hold up in both Starlight themes: the starfield
+ * exists only in dark mode; light mode stays plain.
+ */
+
+/* Hero: tighter, larger type; keep Starlight's layout. */
+[data-has-hero] .hero {
+	padding-block: clamp(2.5rem, 8vh, 5.5rem);
+}
+
+[data-has-hero] .hero h1 {
+	font-size: clamp(2.4rem, 1.2rem + 4.5vw, 4.25rem);
+	line-height: 1.08;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+[data-has-hero] .hero .tagline {
+	max-width: 44ch;
+	font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
+	line-height: 1.55;
+	text-wrap: pretty;
+}
+
+/* Hero screenshot: framed like an application window, not floating art. */
+[data-has-hero] .hero img {
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 10px;
+	width: min(100%, 34rem);
+}
+
+/* Subtle star specks behind the hero, dark theme only. Deterministic dots,
+ * low opacity, no gradient wash — reads as night sky texture, not decoration
+ * competing with the copy. Light theme gets no treatment at all. */
+:root[data-theme='dark'][data-has-hero] .hero {
+	position: relative;
+}
+
+:root[data-theme='dark'][data-has-hero] .hero::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: -1;
+	opacity: 0.55;
+	background-image:
+		radial-gradient(1px 1px at 8% 22%, var(--sl-color-gray-2) 50%, transparent 51%),
+		radial-gradient(1px 1px at 21% 74%, var(--sl-color-gray-3) 50%, transparent 51%),
+		radial-gradient(1.5px 1.5px at 33% 12%, var(--sl-color-gray-2) 50%, transparent 51%),
+		radial-gradient(1px 1px at 44% 58%, var(--sl-color-gray-3) 50%, transparent 51%),
+		radial-gradient(1px 1px at 57% 31%, var(--sl-color-gray-2) 50%, transparent 51%),
+		radial-gradient(1.5px 1.5px at 68% 81%, var(--sl-color-gray-3) 50%, transparent 51%),
+		radial-gradient(1px 1px at 76% 9%, var(--sl-color-gray-2) 50%, transparent 51%),
+		radial-gradient(1px 1px at 88% 47%, var(--sl-color-gray-3) 50%, transparent 51%),
+		radial-gradient(1.5px 1.5px at 94% 76%, var(--sl-color-gray-2) 50%, transparent 51%),
+		radial-gradient(1px 1px at 14% 44%, var(--sl-color-gray-3) 50%, transparent 51%),
+		radial-gradient(1px 1px at 63% 64%, var(--sl-color-gray-3) 50%, transparent 51%),
+		radial-gradient(1px 1px at 81% 28%, var(--sl-color-gray-2) 50%, transparent 51%);
+}
+
+/* Platform line directly under the hero. */
+[data-has-hero] .pv-platforms {
+	margin-top: -0.5rem;
+	text-align: center;
+	font-size: var(--sl-text-sm);
+	color: var(--sl-color-gray-3);
+}
+
+/* Scroll chapters: one idea + one screenshot per fold, alternating sides on
+ * wide viewports, stacked on narrow ones. */
+[data-has-hero] .pv-chapter {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1.5rem 3rem;
+	align-items: center;
+	margin-top: clamp(3rem, 9vh, 6rem);
+}
+
+@media (min-width: 60rem) {
+	[data-has-hero] .pv-chapter {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+	}
+
+	/* Alternate the screenshot side chapter by chapter. */
+	[data-has-hero] .pv-chapter:nth-of-type(even) .pv-chapter-shot {
+		order: -1;
+	}
+}
+
+[data-has-hero] .pv-chapter-copy {
+	max-width: 52ch;
+}
+
+[data-has-hero] .pv-chapter-copy h2 {
+	font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem);
+	line-height: 1.15;
+	text-wrap: balance;
+}
+
+[data-has-hero] .pv-chapter-shot img {
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 10px;
+	width: 100%;
+	height: auto;
+}
+
+/* Closing boundary chapter: text only, centered, room to breathe. */
+[data-has-hero] .pv-chapter--closing {
+	grid-template-columns: 1fr;
+	justify-items: center;
+	text-align: center;
+}
+
+[data-has-hero] .pv-chapter--closing .pv-chapter-copy {
+	max-width: 58ch;
+}
+
+/* Reveal-on-scroll via CSS scroll-driven animations only: no JS, content is
+ * fully visible when unsupported (Firefox/Safari today) or when the user
+ * prefers reduced motion. Never gates visibility on a script. */
+@supports (animation-timeline: view()) {
+	@media (prefers-reduced-motion: no-preference) {
+		[data-has-hero] .pv-chapter {
+			animation: pv-rise both ease-out;
+			animation-timeline: view();
+			animation-range: entry 5% entry 45%;
+		}
+	}
+}
+
+@keyframes pv-rise {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+}
+
+/* Closing download block. */
+[data-has-hero] .pv-closing {
+	margin-top: 3rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}

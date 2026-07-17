@@ -3,7 +3,7 @@ title: Screenshots TODO
 description: Capture checklist for every placeholder screenshot in the docs.
 ---
 
-Every screenshot in the manual and how-to pages is currently a generated
+Every screenshot in the landing, manual, and how-to pages is currently a generated
 grey placeholder SVG. This page is the capture spec: each entry says where
 the shot is embedded, where in the app to take it, what state to stage
 first, and what the frame must show.
@@ -21,6 +21,15 @@ Capture rules:
   light-frame roots, one calibration root, one project-outputs root; a
   mixed inbox folder (Ha lights + matching darks) plus one folder of
   master darks/flats; one project with two attached sessions.
+
+## Landing page
+
+- [ ] **landing-hero** — `index.mdx` hero.
+      Where: the main window on a populated library.
+      Stage: shared staging baseline with sessions, targets, and a project
+      visible so the shot reads as "the app at work".
+      Must show: the full application window (window chrome cropped),
+      wide enough that navigation and real library content are legible.
 
 ## Setup wizard & library roots
 

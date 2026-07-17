@@ -13,6 +13,7 @@ export default defineConfig({
 			title: 'PlateVault',
 			description:
 				'Local-first astrophotography library manager: organize acquisitions, calibration, projects, and cleanup without touching your files without review.',
+			customCss: ['./src/styles/landing.css'],
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/nightwatch-astro/alm' },
 			],

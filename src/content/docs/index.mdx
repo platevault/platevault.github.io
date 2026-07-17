@@ -1,62 +1,127 @@
 ---
-title: PlateVault
-description: A local-first astrophotography library manager for organizing acquisitions, calibration, projects, and cleanup.
+title: Every frame accounted for
+description: PlateVault is a local-first astrophotography library manager. It indexes your files where they live, plans every move before it happens, and keeps the audit trail to prove it.
 template: splash
 hero:
-  tagline: PlateVault documentation
+  tagline: PlateVault indexes your astrophotography library where it already lives, plans every file move before it happens, and keeps the record to prove it.
+  image:
+    file: ../../assets/screenshots/landing-hero.svg
+    alt: The PlateVault main window
   actions:
-    - text: Read the manual
-      link: /manual/setup-wizard/
-      icon: right-arrow
-      variant: primary
-    - text: Install PlateVault
-      link: /how-to/install/
+    - text: Download PlateVault
+      link: https://github.com/nightwatch-astro/alm/releases/latest
       icon: download
+      variant: primary
+    - text: Get started
+      link: how-to/install/
+      icon: right-arrow
+      variant: minimal
 ---
 
-## What PlateVault is
+import { LinkButton } from '@astrojs/starlight/components';
 
-PlateVault is a desktop application that organizes an astrophotography
-library: acquisition sessions, calibration masters, targets, processing
-projects, and the cleanup and archive decisions that keep a large library
-manageable. It indexes your files where they already live, maps the
-relationships between them, prepares tool-friendly project inputs, and plans
-filesystem work for your review.
+<p class="pv-platforms">Free and open source (AGPL-3.0) · Windows x64 · Linux x64 · macOS on Apple Silicon</p>
 
-PlateVault never processes images. Calibration, debayering, registration,
-stacking, and editing belong to PixInsight/WBPP and comparable tools —
-see [Prepare inputs for PixInsight/WBPP](how-to/prepare-for-pixinsight/)
-for how the boundary works in practice.
+<section class="pv-chapter">
+	<div class="pv-chapter-copy">
+		## Starts where your files already are
 
-## Three promises
+		Point the [setup wizard](manual/setup-wizard/) at the folders you already
+		have — capture output, sorted library, masters, archives. Registration
+		records where your data lives and leaves every file exactly as it is.
+		And because library roots are tracked separately from the paths beneath
+		them, a drive that changes letter or mount point is fixed by
+		[remapping one record](how-to/recover-after-moving-a-drive/).
+	</div>
+	<div class="pv-chapter-shot">
+		![Screenshot: the setup wizard's Source Folders step](../../assets/screenshots/setup-wizard.svg)
+	</div>
+</section>
 
-1. **Local-first file custody.** Your image files stay where they are, on
-   your disks, in your folder structure. PlateVault stores metadata,
-   relationships, and decisions in its own database and never copies your
-   library into a private store. Library roots are tracked separately from
-   relative paths, so a moved drive can be remapped without rewriting
-   history.
-2. **Reviewable filesystem mutation.** Every move, copy, archive, or delete
-   is proposed as a plan first. Only approving and applying a plan touches
-   disk, nothing is overwritten silently, and destructive operations prefer
-   archive or trash over permanent deletion.
-3. **A durable audit trail.** Every applied action — and every refused or
-   failed one — is recorded with its outcome and actor, so you can always
-   reconstruct what happened to your library.
+<section class="pv-chapter">
+	<div class="pv-chapter-copy">
+		## Every file passes one gate
 
-PlateVault runs on Windows x64, Linux x64, and Apple Silicon macOS. Intel
-macOS is not supported. Installer formats and per-platform steps:
-[Install PlateVault](how-to/install/).
+		New files land in the [Inbox](manual/inbox/), PlateVault's single ingest
+		gate. Each item carries a classification you can inspect and correct
+		before confirming — and confirming can mean moving files into your
+		structure or cataloguing them exactly where they sit. An item missing a
+		mandatory attribute is flagged for review, with a banner naming exactly
+		what is missing, until you resolve it.
+	</div>
+	<div class="pv-chapter-shot">
+		![Screenshot: the Inbox confirm gate](../../assets/screenshots/inbox.svg)
+	</div>
+</section>
+
+<section class="pv-chapter">
+	<div class="pv-chapter-copy">
+		## The map builds itself
+
+		Confirmed files become the index, and the index becomes the map.
+		[Sessions](manual/sessions/) derive automatically — a night's worth of a
+		target/filter combination, always current, with the Inbox confirmation
+		you already gave as the only gate.
+		[Targets](manual/targets-planning/) carry tonight's astronomy computed
+		for your observing site: max altitude, visibility, lunar separation.
+		[Calibration masters](manual/calibration-masters/) are matched against
+		the sessions that need them. [Projects](manual/projects-lifecycle/) tie
+		it all — sessions, masters, manifests, recorded outputs — into one
+		tracked unit of processing work.
+	</div>
+	<div class="pv-chapter-shot">
+		![Screenshot: project detail with attached sessions and manifests](../../assets/screenshots/projects-lifecycle.svg)
+	</div>
+</section>
+
+<section class="pv-chapter">
+	<div class="pv-chapter-copy">
+		## Disk changes happen on the record
+
+		When PlateVault does touch disk — an ingest move, a
+		[cleanup, an archive](manual/cleanup-archive/) — it first writes a plan:
+		every source and destination listed for your review. Only applying the
+		plan changes anything, and deletion prefers archive or trash over
+		permanent removal. The audit trail logs
+		every applied action and every refused or failed one, so what happened
+		to your library is always reconstructable.
+	</div>
+	<div class="pv-chapter-shot">
+		![Screenshot: a cleanup plan under review](../../assets/screenshots/cleanup-archive.svg)
+	</div>
+</section>
+
+<section class="pv-chapter pv-chapter--closing">
+	<div class="pv-chapter-copy">
+		## Organizes everything. Processes nothing.
+
+		PlateVault never calibrates, stacks, or edits an image. That line is
+		deliberate: PixInsight/WBPP and the tools you already trust do the
+		processing, and PlateVault does everything around it — attaches the
+		right sessions, matches the right masters, launches the tool against
+		the right folder, and [records the outputs it writes
+		back](how-to/prepare-for-pixinsight/).
+	</div>
+</section>
 
 ## Where to start
 
-- Fresh machine: [Install PlateVault](how-to/install/), then let the
+- Fresh machine: [install PlateVault](how-to/install/), then let the
   [setup wizard](manual/setup-wizard/) register your folders.
-- First night of data: [Ingest your first session](how-to/ingest-first-session/).
-- Library that is already organized on disk:
-  [Organize an existing messy library](how-to/organize-existing-library/).
-- Ready to process: [Prepare inputs for PixInsight/WBPP](how-to/prepare-for-pixinsight/).
-- Running out of disk: [Plan a cleanup safely](how-to/plan-a-cleanup/).
+- First night of data: [ingest your first session](how-to/ingest-first-session/).
+- Years of files already on disk:
+  [organize an existing messy library](how-to/organize-existing-library/).
+- Ready to process: [prepare inputs for PixInsight/WBPP](how-to/prepare-for-pixinsight/).
+- Running out of disk: [plan a cleanup safely](how-to/plan-a-cleanup/).
 
-The Manual describes each page of the application; the How-to guides walk
-through complete tasks end to end.
+The [Manual](manual/setup-wizard/) describes each page of the application;
+the How-to guides walk through complete tasks end to end.
+
+<div class="pv-closing">
+	<LinkButton href="https://github.com/nightwatch-astro/alm/releases/latest" icon="download">
+		Download the latest release
+	</LinkButton>
+	<LinkButton href="how-to/install/" variant="minimal" icon="right-arrow">
+		Install guide
+	</LinkButton>
+</div>

@@ -12,6 +12,7 @@ const outDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "asset
 // src/content/docs/reference/screenshots-todo.md and the manual pages that
 // embed these images.
 const placeholders = {
+  "landing-hero": "PlateVault main window (TODO)",
   "setup-wizard": "Setup wizard — Source Folders step (TODO)",
   "setup-wizard-confirm": "Setup wizard — Confirm summary before registration (TODO)",
   "data-sources": "Settings → Data Sources — source cards with lifecycle controls (TODO)",
