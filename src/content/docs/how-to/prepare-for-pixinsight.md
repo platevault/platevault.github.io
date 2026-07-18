@@ -3,10 +3,9 @@ title: Prepare inputs for PixInsight/WBPP
 description: Get a project's light frames, calibration, and processing tool ready — without PlateVault touching the actual processing.
 ---
 
-PlateVault's job ends where PixInsight's begins. Preparation means: the
-right sessions attached to a project, the right masters matched, the tool
-launched against the right folder, and the outputs recorded when WBPP is
-done.
+PlateVault's job ends where PixInsight's begins. Preparation means:
+sessions attached to the project, masters matched, the tool launched
+against the project folder, and outputs recorded when WBPP is done.
 
 ## 1. Point PlateVault at the executable
 
@@ -37,7 +36,7 @@ will get — sub-frame counts and integration time per filter.
 
 For each attached session, review the ranked candidate masters on the
 Calibration page or from the project, and assign explicitly. Candidates
-show real context with confidence values and mismatch indicators.
+show context with confidence values and mismatch indicators.
 
 ![Ranked candidate masters for a session, each with context, a confidence value, and mismatch indicators](../../../assets/screenshots/calibration-matching.svg)
 

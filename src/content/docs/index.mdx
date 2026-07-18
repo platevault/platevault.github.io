@@ -1,6 +1,6 @@
 ---
 title: Every frame accounted for
-description: PlateVault is a local-first astrophotography library manager. It indexes your files where they live, plans every move before it happens, and keeps the audit trail to prove it.
+description: "A local-first astrophotography library manager: indexes files in place, plans every move, keeps the audit trail."
 template: splash
 hero:
   tagline: PlateVault indexes your astrophotography library where it already lives, plans every file move before it happens, and keeps the record to prove it.
@@ -92,10 +92,9 @@ import RevealOnScroll from '../../components/RevealOnScroll.astro';
 
 		New files land in the [Inbox](manual/inbox/), PlateVault's single ingest
 		gate. Each item carries a classification you can inspect and correct
-		before confirming — and confirming can mean moving files into your
-		structure or cataloguing them exactly where they sit. An item missing a
-		mandatory attribute is flagged for review, with a banner naming exactly
-		what is missing, until you resolve it.
+		before confirming. Confirming either moves files into your structure
+		or catalogues them where they sit. An item missing a mandatory
+		attribute is flagged for review until you resolve it.
 	</div>
 	<div class="pv-chapter-shot">
 		![Screenshot: the Inbox confirm gate](../../assets/screenshots/inbox.svg)
@@ -104,18 +103,17 @@ import RevealOnScroll from '../../components/RevealOnScroll.astro';
 
 <section class="pv-chapter">
 	<div class="pv-chapter-copy">
-		## The map builds itself
+		## Sessions, targets, projects: derived, not entered
 
-		Confirmed files become the index, and the index becomes the map.
+		Confirmed files feed the index, and everything else derives from it.
 		[Sessions](manual/sessions/) derive automatically — a night's worth of a
 		target/filter combination, always current, with the Inbox confirmation
 		you already gave as the only gate.
 		[Targets](manual/targets-planning/) carry tonight's astronomy computed
 		for your observing site: max altitude, visibility, lunar separation.
 		[Calibration masters](manual/calibration-masters/) are matched against
-		the sessions that need them. [Projects](manual/projects-lifecycle/) tie
-		it all — sessions, masters, manifests, recorded outputs — into one
-		tracked unit of processing work.
+		the sessions that need them. [Projects](manual/projects-lifecycle/) collect
+		sessions, masters, manifests, and recorded outputs for one processing job.
 	</div>
 	<div class="pv-chapter-shot">
 		![Screenshot: project detail with attached sessions and manifests](../../assets/screenshots/projects-lifecycle.svg)
@@ -141,14 +139,13 @@ import RevealOnScroll from '../../components/RevealOnScroll.astro';
 
 <section class="pv-chapter pv-chapter--closing">
 	<div class="pv-chapter-copy">
-		## Organizes everything. Processes nothing.
+		## Organizes your library. Processes nothing.
 
-		PlateVault never calibrates, stacks, or edits an image. That line is
-		deliberate: PixInsight/WBPP and the tools you already trust do the
-		processing, and PlateVault does everything around it — attaches the
-		right sessions, matches the right masters, launches the tool against
-		the right folder, and [records the outputs it writes
-		back](how-to/prepare-for-pixinsight/).
+		PlateVault never calibrates, stacks, or edits an image. PixInsight/WBPP
+		and the tools you already use do the processing; PlateVault does
+		everything around it — attaches sessions, matches masters, launches
+		the tool against the project folder, and [records the outputs it
+		writes back](how-to/prepare-for-pixinsight/).
 	</div>
 </section>
 
@@ -162,7 +159,7 @@ import RevealOnScroll from '../../components/RevealOnScroll.astro';
 - Ready to process: [prepare inputs for PixInsight/WBPP](how-to/prepare-for-pixinsight/).
 - Running out of disk: [plan a cleanup safely](how-to/plan-a-cleanup/).
 
-The [Manual](manual/setup-wizard/) describes each page of the application;
+The Manual pages (starting with the [setup wizard](manual/setup-wizard/)) describe each page of the application;
 the How-to guides walk through complete tasks end to end.
 
 <div class="pv-closing">

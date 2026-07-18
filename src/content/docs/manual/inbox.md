@@ -69,12 +69,12 @@ resolve a single root at confirm time, you are prompted to choose.
    moves; the item stays in the queue with a badge showing its open plan.
 2. **Review plans (N)** opens the plan review. Every plan item shows its
    action with full source and destination paths. Escape or Discard closes
-   with zero mutation; a pending destination choice is resolvable here.
+   without changing anything; a pending destination choice is resolvable here.
 3. **Apply** executes the plan. Files move to paths resolved from the
    per-frame-type folder pattern (for example
    `{target}/{filter}/{date}/light/`), and the outcome is reported per item.
    A plan whose source file changed on disk since confirm is refused as
-   stale rather than applied outdated; a destination collision is refused
+   stale rather than applied anyway; a destination collision is refused
    rather than overwritten.
 
 ![The plan review overlay: each planned move listing its full source and destination path, with Apply and Discard controls](../../../assets/screenshots/plan-review.svg)

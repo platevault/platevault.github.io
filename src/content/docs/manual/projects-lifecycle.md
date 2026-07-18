@@ -29,7 +29,7 @@ A name that collides with an existing project (case-insensitively) is
 rejected at the name field on submit — no project and no folders are
 created. If a plain file already occupies a folder location, the project
 record is still created and you are told which folder could not be created;
-that plan step stays available for review.
+the folder-creation step remains in the project's plan for review.
 
 ## Attaching sources
 
@@ -75,7 +75,7 @@ itself.
 
 ## Archiving a finished project
 
-Archiving follows the same plan discipline as every other mutation:
+Archiving follows the same plan discipline as every other change:
 
 1. On a **completed** project, choose **Archive**. PlateVault generates an
    archive plan and opens its review in the same interaction.
@@ -109,7 +109,7 @@ Two removal actions follow, in increasing severity:
   case-sensitive) before the confirm control enables; the backend
   independently rejects a mismatch. When **Block permanent delete** is
   enabled in Cleanup/Protection settings, the deletion is refused
-  server-side and no file is removed. Cancel leaves every file untouched.
+  by the backend and no file is removed. Cancel leaves every file untouched.
 
 Each archived entry also carries the platform-native reveal control ("Show
 in File Explorer" on Windows), which opens the archived files' folder.

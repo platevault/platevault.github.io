@@ -3,7 +3,7 @@ title: Settings
 description: Appearance, library defaults, equipment, and observing-planner configuration.
 ---
 
-Settings gathers thirteen panes in three sections:
+Settings is organized in three sections:
 
 | Section | Panes |
 | --- | --- |
@@ -34,7 +34,7 @@ Disable/Enable, Delete, protection override, reveal — described in
 
 Ingestion sets scan behavior defaults: **Follow symbolic links**, **Follow
 NTFS junctions**, and the file-hashing mode. Scans do not follow symlinks
-or junctions unless you enable it here — a deliberate safety default for
+or junctions unless you enable it here — a safety default for
 libraries spread across drives and link farms. Hashing is optional so large
 files are not eagerly read end to end.
 
@@ -105,8 +105,8 @@ backend refuse every permanent-deletion attempt (see
 
 ## Audit Log
 
-Settings → Audit Log is the durable record of every attempted mutating
-action across the library: timestamp, event, entity, outcome (applied /
+Settings → Audit Log is the durable record of every attempted change
+across the library: timestamp, event, entity, outcome (applied /
 refused / failed), and actor, with before→after value pairs for settings
 changes. It answers "what did PlateVault actually do (or refuse to do)?"
 after an unattended scan, a plan apply, or a forgotten background

@@ -3,10 +3,10 @@ title: Targets & planning
 description: Find, track, and plan observations for astronomical targets.
 ---
 
-The Targets page is your personal target library plus a per-site observing
+The Targets page is your target library plus a per-site observing
 planner: the objects you have decided to track, findable by any of their
-names, with real astronomy for tonight computed for your configured
-observing site.
+names, with tonight's altitude, visibility, and lunar separation computed
+for your observing site.
 
 ![The Targets list with tonight's planner columns: max altitude, altitude sparkline, visibility, lunar separation, and recommended filters](../../../assets/screenshots/targets-planning.svg)
 
@@ -59,7 +59,7 @@ coordinates, source, and catalog id. From here you can:
 
 With an observing site configured in
 [Settings → Target Planner](../settings/#target-planner), the planner
-columns show real per-site, per-night values computed from the target's
+columns show per-site, per-night values computed from the target's
 coordinates, tonight's date, and your site: Max altitude, Tonight's
 sparkline, Visible tonight, Lunar separation, recommended Filters, Image
 time, and Opposition. The values change when the site or date changes.

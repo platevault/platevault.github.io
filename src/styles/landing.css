@@ -11,10 +11,24 @@
 
 /* Hero: centered at every breakpoint. Override Starlight's asymmetric split so
  * the plate motif sits centered below the headline instead of flipping sides. */
+/* Full-bleed the hero so its glow gradient spans the viewport instead of being
+ * capped at Starlight's centered .sl-container (max-width ~1080px). The headline,
+ * tagline, and plate keep their own max-width + auto margins, so content stays
+ * centred; only the background band widens. overflow-x: clip on the hero's
+ * scroll root (data-has-hero is on <html>) absorbs the 100vw scrollbar overshoot
+ * without breaking the sticky header (clip, unlike hidden, creates no scroll
+ * container). */
+[data-has-hero] {
+	overflow-x: clip;
+}
+
 [data-has-hero] .hero {
 	position: relative;
 	grid-template-columns: 1fr;
+	width: 100vw;
+	margin-inline: calc(50% - 50vw);
 	padding-block: clamp(2.75rem, 9vh, 6rem);
+	padding-inline: clamp(1rem, 4vw, 2rem);
 	text-align: center;
 	isolation: isolate;
 	/* Clip the glow bloom so it never adds horizontal scroll. */

@@ -61,8 +61,7 @@ twilight and horizon settings live in **Settings → Target Planner**.
 ### 5. Confirm
 
 Review the full summary: every folder with its category and organization
-state, plus enabled processing tools and a "what happens next" note. Proceeding here is what registers every source with the backend and
-starts scanning.
+state, plus enabled processing tools and a "what happens next" note. Proceeding registers every source and starts scanning.
 
 ![The wizard's Confirm step: every folder listed with category and organization state, ready to register](../../../assets/screenshots/setup-wizard-confirm.svg)
 
@@ -79,7 +78,7 @@ persists: relaunching the app never shows setup again.
 ## Managing data sources afterward
 
 Every registered source appears as a card in **Settings → Data Sources**.
-Each lifecycle action below answers back at the control and writes a durable
+Each lifecycle action below shows its result at the control and writes a durable
 audit row (see the [Audit Log](../settings/#audit-log)).
 
 ![Settings → Data Sources: one card per registered source with Rescan, Remap, Disable, Delete, and protection controls](../../../assets/screenshots/data-sources.svg)

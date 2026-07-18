@@ -6,8 +6,8 @@ description: Reclaim disk space safely, and archive finished projects.
 Cleanup plans reclaim disk space from two kinds of superseded data:
 processing outputs a project has finished with (intermediates replaced by
 masters and finals) and raw sub-frames a session is done with. Both flows
-end in the same reviewed, audited plan pipeline as every other filesystem
-mutation — scanning proposes, only an applied plan moves anything.
+end in the same reviewed, audited plan pipeline as every other change to
+disk — scanning proposes, only an applied plan moves anything.
 
 This page covers file-level cleanup. Archiving a *whole project* is part of
 the project lifecycle — see

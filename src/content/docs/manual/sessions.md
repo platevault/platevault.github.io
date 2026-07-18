@@ -6,8 +6,7 @@ description: Read-only, always up-to-date acquisition session inventory.
 Sessions shows your acquisition sessions — a night's worth of a
 target/filter combination — as a read-only inventory derived from the
 library index. There is nothing to approve here: the [Inbox](../inbox/)
-confirm gate you already passed is the only gate. The page carries no
-Confirm, Re-open, Reject, or Ignore control and no review-state pill.
+confirm gate you already passed is the only gate.
 
 ![The Sessions list with a session's detail panel open beside it](../../../assets/screenshots/sessions.svg)
 
@@ -62,5 +61,5 @@ From the detail you can also:
 
 A session's detail also hosts the raw sub-frame cleanup scan, for
 reclaiming space from superseded lights/darks/flats/bias —
-through the same plan review and apply flow as every other mutation. See
+through the same plan review and apply flow as every other change. See
 [Cleanup & archive plans](../cleanup-archive/).

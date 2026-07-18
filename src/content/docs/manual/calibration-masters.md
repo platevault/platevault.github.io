@@ -37,13 +37,12 @@ Sort headers, search, and group-by work as on other list pages, and a kind
 filter appears once a second kind exists.
 
 Only dark/flat/bias kinds surface here; master *light* frames,
-`dark_flat`, and `bad_pixel_map` are out of scope by design.
+`dark_flat`, and `bad_pixel_map` are out of scope.
 
 ## Master detail
 
-A master's detail panel leads with information the row does not already
-show: full metadata, provenance, age/created date, history, and a **Used
-by** list of the sessions it is assigned to, each navigable. Actions
+A master's detail panel shows full metadata, provenance, age, history, and
+a **Used by** list: the sessions it is assigned to, each navigable. Actions
 include **Use in project**, **Replace master**, and the platform-native
 reveal control, which opens the master's own folder.
 
@@ -59,9 +58,9 @@ renders as unresolved.
 ![Ranked candidate sessions for a master: context, confidence values, and a flagged hard-rule mismatch](../../../assets/screenshots/calibration-matching.svg)
 
 Assignment is always explicit.
-Confirming records it, updates the Used-by list, and answers back; the
+Confirming records the assignment and updates the Used-by list; the
 assignment is also visible from the session and project side. Cancelling
-fires no backend call.
+changes nothing.
 
 ## Replacing a mis-assigned master
 
