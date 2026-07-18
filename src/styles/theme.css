@@ -1,0 +1,184 @@
+/*
+ * PlateVault "narrowband observatory" theme — applied SITE-WIDE (loaded via
+ * customCss after Starlight's own styles, so :root overrides win by source
+ * order at equal specificity). Palette is authored in OKLCH and anchored on
+ * the narrowband imaging palette: deep blue-black skies, OIII teal-cyan as the
+ * one working accent, Hα magenta reserved for low-opacity glow only.
+ *
+ * Naming follows Starlight's token inversion: in the dark base (:root)
+ * --sl-color-white is the highest-emphasis text and gray-1..7 run light→dark;
+ * in [data-theme='light'] --sl-color-white is the darkest text and the gray
+ * scale runs dark→light. Fonts are self-hosted (see astro.config customCss) so
+ * GitHub Pages needs no external font requests.
+ */
+
+/* ---- Fonts -------------------------------------------------------------- */
+:root {
+	--pv-font-display: 'Space Grotesk Variable', 'Inter Variable', system-ui, sans-serif;
+	--sl-font: 'Inter Variable', system-ui, -apple-system, BlinkMacSystemFont,
+		'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	/* Glow-only narrowband hues — never used as text (fails contrast by design). */
+	--pv-halpha: 0.66 0.17 350;
+	--pv-oiii: 0.78 0.12 195;
+}
+
+/* ---- Dark theme (primary home) ----------------------------------------- */
+:root {
+	--sl-color-bg: oklch(0.16 0.02 250);
+	--sl-color-black: oklch(0.14 0.02 252);
+	--sl-color-bg-nav: oklch(0.185 0.022 251 / 0.72);
+	--sl-color-bg-sidebar: oklch(0.185 0.02 251);
+	--sl-color-bg-inline-code: oklch(0.24 0.022 250);
+
+	--sl-color-white: oklch(0.97 0.005 230);
+	--sl-color-gray-1: oklch(0.92 0.007 232);
+	--sl-color-gray-2: oklch(0.84 0.009 234);
+	--sl-color-gray-3: oklch(0.72 0.012 236);
+	--sl-color-gray-4: oklch(0.55 0.016 240);
+	--sl-color-gray-5: oklch(0.35 0.02 246);
+	--sl-color-gray-6: oklch(0.24 0.022 249);
+	--sl-color-gray-7: oklch(0.20 0.022 250);
+	--sl-color-text: oklch(0.86 0.009 234);
+	--sl-color-text-invert: oklch(0.15 0.02 252);
+
+	--sl-color-accent: oklch(0.78 0.12 197);
+	--sl-color-accent-high: oklch(0.90 0.08 197);
+	--sl-color-accent-low: oklch(0.30 0.06 205);
+	--sl-color-text-accent: oklch(0.84 0.11 197);
+
+	--sl-color-hairline: oklch(0.32 0.02 248);
+	--sl-color-hairline-shade: oklch(0.24 0.02 250);
+	--sl-color-hairline-light: oklch(0.40 0.02 246);
+}
+
+/* ---- Light theme (cool, never warm) ------------------------------------ */
+:root[data-theme='light'] {
+	--sl-color-bg: oklch(0.985 0.004 235);
+	--sl-color-black: oklch(0.985 0.004 235);
+	--sl-color-bg-nav: oklch(0.98 0.005 235 / 0.72);
+	--sl-color-bg-sidebar: oklch(0.965 0.005 235);
+	--sl-color-bg-inline-code: oklch(0.93 0.006 235);
+
+	--sl-color-white: oklch(0.24 0.02 250);
+	--sl-color-gray-1: oklch(0.28 0.02 250);
+	--sl-color-gray-2: oklch(0.36 0.018 250);
+	--sl-color-gray-3: oklch(0.45 0.016 250);
+	--sl-color-gray-4: oklch(0.60 0.014 248);
+	--sl-color-gray-5: oklch(0.80 0.01 240);
+	--sl-color-gray-6: oklch(0.93 0.006 235);
+	--sl-color-gray-7: oklch(0.965 0.004 235);
+	--sl-color-text: oklch(0.36 0.018 250);
+	--sl-color-text-invert: oklch(0.99 0.002 235);
+
+	--sl-color-accent: oklch(0.52 0.11 202);
+	--sl-color-accent-high: oklch(0.40 0.09 206);
+	--sl-color-accent-low: oklch(0.90 0.04 200);
+	--sl-color-text-accent: oklch(0.50 0.11 202);
+
+	--sl-color-hairline: oklch(0.90 0.006 235);
+	--sl-color-hairline-shade: oklch(0.93 0.006 235);
+	--sl-color-hairline-light: oklch(0.86 0.008 235);
+}
+
+/* ---- Typography --------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6,
+.site-title span {
+	font-family: var(--pv-font-display);
+	letter-spacing: -0.02em;
+}
+
+h1, h2, h3 {
+	text-wrap: balance;
+}
+
+/* Display floor: never tighter than -0.03em. */
+.hero h1 {
+	letter-spacing: -0.025em;
+}
+
+/* Wordmark ties the site to the app's identity. */
+.site-title span,
+a.site-title {
+	font-family: var(--pv-font-display);
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+/* ---- Site-wide background ----------------------------------------------
+ * Fixed behind all content (body paints --sl-color-bg; this pseudo-element
+ * sits above that fill but below text at z-index:-1). Dark: deep vignette +
+ * one low-opacity Hα/OIII nebula glow offset to a corner + a deterministic,
+ * non-repeating starfield. Light: a single whisper-cool radial, no starfield.
+ * Opacity stays low so ordinary docs text keeps full contrast. */
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+}
+
+:root[data-theme='dark'] body::before {
+	background:
+		radial-gradient(120% 85% at 88% -12%, oklch(var(--pv-halpha) / 0.10), transparent 55%),
+		radial-gradient(95% 75% at 6% 112%, oklch(var(--pv-oiii) / 0.06), transparent 55%),
+		radial-gradient(150% 130% at 50% -5%, transparent 58%, oklch(0.10 0.02 255 / 0.55)),
+		/* starfield — deterministic, non-repeating specks */
+		radial-gradient(1px 1px at 4% 12%, oklch(0.9 0.01 230 / 0.7), transparent 55%),
+		radial-gradient(1px 1px at 11% 68%, oklch(0.8 0.01 230 / 0.5), transparent 55%),
+		radial-gradient(1.5px 1.5px at 17% 33%, oklch(0.95 0.01 200 / 0.75), transparent 55%),
+		radial-gradient(1px 1px at 23% 84%, oklch(0.8 0.02 350 / 0.5), transparent 55%),
+		radial-gradient(1px 1px at 29% 18%, oklch(0.85 0.01 230 / 0.6), transparent 55%),
+		radial-gradient(1.5px 1.5px at 34% 57%, oklch(0.9 0.02 197 / 0.7), transparent 55%),
+		radial-gradient(1px 1px at 39% 91%, oklch(0.8 0.01 230 / 0.45), transparent 55%),
+		radial-gradient(1px 1px at 44% 7%, oklch(0.85 0.01 230 / 0.6), transparent 55%),
+		radial-gradient(1px 1px at 48% 44%, oklch(0.8 0.01 230 / 0.5), transparent 55%),
+		radial-gradient(1.5px 1.5px at 53% 76%, oklch(0.95 0.01 200 / 0.7), transparent 55%),
+		radial-gradient(1px 1px at 58% 26%, oklch(0.82 0.02 350 / 0.5), transparent 55%),
+		radial-gradient(1px 1px at 63% 63%, oklch(0.85 0.01 230 / 0.55), transparent 55%),
+		radial-gradient(1px 1px at 67% 14%, oklch(0.8 0.01 230 / 0.5), transparent 55%),
+		radial-gradient(1.5px 1.5px at 72% 49%, oklch(0.9 0.02 197 / 0.68), transparent 55%),
+		radial-gradient(1px 1px at 77% 82%, oklch(0.8 0.01 230 / 0.45), transparent 55%),
+		radial-gradient(1px 1px at 81% 30%, oklch(0.85 0.01 230 / 0.6), transparent 55%),
+		radial-gradient(1px 1px at 85% 66%, oklch(0.8 0.01 230 / 0.5), transparent 55%),
+		radial-gradient(1.5px 1.5px at 90% 21%, oklch(0.95 0.01 200 / 0.72), transparent 55%),
+		radial-gradient(1px 1px at 94% 55%, oklch(0.8 0.02 350 / 0.5), transparent 55%),
+		radial-gradient(1px 1px at 97% 88%, oklch(0.82 0.01 230 / 0.5), transparent 55%);
+	background-repeat: no-repeat;
+}
+
+:root[data-theme='light'] body::before {
+	background:
+		radial-gradient(100% 70% at 50% -25%, oklch(0.6 0.05 210 / 0.05), transparent 62%),
+		radial-gradient(80% 60% at 92% -10%, oklch(0.7 0.06 350 / 0.035), transparent 58%);
+	background-repeat: no-repeat;
+}
+
+/* ---- Sticky glass header ------------------------------------------------
+ * The one purposeful glassmorphism use: a translucent, blurred sticky bar so
+ * the starfield/glow reads continuously behind it. Bottom border intensifies
+ * once the page is scrolled (data-scrolled toggled by the head script). */
+header.header {
+	background: var(--sl-color-bg-nav);
+	-webkit-backdrop-filter: blur(12px) saturate(1.4);
+	backdrop-filter: blur(12px) saturate(1.4);
+	border-bottom: 1px solid transparent;
+	transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+:root[data-scrolled] header.header {
+	border-bottom-color: var(--sl-color-hairline);
+	box-shadow: 0 1px 0 0 oklch(0.5 0.08 197 / 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	header.header {
+		transition: none;
+	}
+}
+
+/* Accent links inside prose get the teal underline treatment already via
+ * Starlight tokens; nudge focus rings to the accent for keyboard clarity. */
+:focus-visible {
+	outline-color: var(--sl-color-accent);
+}

@@ -13,7 +13,21 @@ export default defineConfig({
 			title: 'PlateVault',
 			description:
 				'Local-first astrophotography library manager: organize acquisitions, calibration, projects, and cleanup without touching your files without review.',
-			customCss: ['./src/styles/landing.css'],
+			customCss: [
+				'@fontsource-variable/inter/index.css',
+				'@fontsource-variable/space-grotesk/index.css',
+				'./src/styles/theme.css',
+				'./src/styles/landing.css',
+			],
+			// Toggle a scroll flag site-wide so the glass header's bottom border
+			// can intensify once the page leaves the top. Inline + no framework.
+			head: [
+				{
+					tag: 'script',
+					content:
+						"const s=()=>document.documentElement.toggleAttribute('data-scrolled',window.scrollY>4);addEventListener('scroll',s,{passive:true});addEventListener('DOMContentLoaded',s);s();",
+				},
+			],
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/nightwatch-astro/alm' },
 			],

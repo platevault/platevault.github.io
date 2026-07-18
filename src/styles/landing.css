@@ -1,35 +1,24 @@
 /*
  * Landing (splash) page styles. Scoped to [data-has-hero] so ordinary docs
- * pages are untouched. Must hold up in both Starlight themes: the starfield
- * exists only in dark mode; light mode stays plain.
+ * pages keep Starlight's defaults. Shared tokens, fonts, the glass header, and
+ * the site-wide starfield/glow background live in theme.css; this file is the
+ * landing-only hero, chapter rhythm, plate framing, and reveal-on-scroll.
  *
- * Type: Starlight's font stack and --sl-text-* scale only, no custom
- * font-family anywhere in this file.
- * Alignment: one shared column (Starlight's own --sl-content-width panel).
- * The hero is centered, deliberately the one exception; every chapter and
- * the closing CTA share the same left-aligned column and never swap sides.
+ * Layout: one shared left-aligned column for every chapter and the closing CTA
+ * (text left, plate right on wide viewports) — no per-side alternation. The
+ * hero is centered, the one deliberate exception.
  */
 
-/* Hide the docs nav/search/theme-toggle bar on the hero page only, and drop
- * the space PageFrame reserves for it. Docs pages (no [data-has-hero]) are
- * untouched. The hero's own Download + Get started actions, plus the
- * "Where to start" section further down, keep people from being stranded
- * without navigation. */
-[data-has-hero] header.header {
-	display: none;
-}
-
-[data-has-hero] .main-frame {
-	padding-top: 0;
-}
-
-/* Hero: centered at every breakpoint. Starlight's default hero splits into
- * an asymmetric 7fr/4fr row and left-aligns text at >=50rem; override both
- * so the hero reads the same on phones and desktops instead of flipping. */
+/* Hero: centered at every breakpoint. Override Starlight's asymmetric split so
+ * the plate motif sits centered below the headline instead of flipping sides. */
 [data-has-hero] .hero {
+	position: relative;
 	grid-template-columns: 1fr;
-	padding-block: clamp(2.5rem, 8vh, 5.5rem);
+	padding-block: clamp(2.75rem, 9vh, 6rem);
 	text-align: center;
+	isolation: isolate;
+	/* Clip the glow bloom so it never adds horizontal scroll. */
+	overflow: clip;
 }
 
 [data-has-hero] .hero .stack,
@@ -44,74 +33,83 @@
 
 [data-has-hero] .hero h1 {
 	font-size: clamp(2.4rem, 1.2rem + 4.5vw, 4.25rem);
-	line-height: 1.08;
-	letter-spacing: -0.02em;
+	line-height: 1.05;
+	max-width: 18ch;
+	margin-inline: auto;
 	text-wrap: balance;
+	/* Teal display glow — solid accent text, never gradient-clipped. */
+	color: var(--sl-color-white);
+	text-shadow: 0 0 42px oklch(var(--pv-oiii) / 0.28);
 }
 
+/* One accented word band: tint the tagline lead-in via the accent token. */
 [data-has-hero] .hero .tagline {
-	max-width: 44ch;
+	max-width: 46ch;
 	margin-inline: auto;
-	font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
+	font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.3rem);
 	line-height: 1.55;
+	color: var(--sl-color-gray-2);
 	text-wrap: pretty;
 }
 
-/* Hero screenshot: framed like an application window, not floating art. */
-[data-has-hero] .hero img {
-	border: 1px solid var(--sl-color-gray-5);
-	border-radius: 10px;
+/* Hero plate motif (inline SVG from index.mdx frontmatter). Decorative art
+ * with its own drawn frame, so it gets a soft teal glow, not a second border. */
+[data-has-hero] .hero .pv-hero-plate {
+	display: block;
 	width: min(100%, 34rem);
-	margin-inline: auto;
+	height: auto;
+	margin: clamp(1.5rem, 4vh, 2.75rem) auto 0;
+	border-radius: 16px;
+	filter: drop-shadow(0 18px 48px oklch(0.05 0.02 250 / 0.55))
+		drop-shadow(0 0 32px oklch(var(--pv-oiii) / 0.12));
 }
 
-/* Subtle star specks behind the hero, dark theme only. Deterministic dots,
- * low opacity, no gradient wash — reads as night sky texture, not decoration
- * competing with the copy. Light theme gets no treatment at all. */
-:root[data-theme='dark'][data-has-hero] .hero {
-	position: relative;
-}
-
-:root[data-theme='dark'][data-has-hero] .hero::before {
+/* Hero glow: a soft OIII/Hα bloom behind the headline, dark theme richest.
+ * Sits behind hero content (z-index) and never touches text contrast. */
+[data-has-hero] .hero::before {
 	content: '';
 	position: absolute;
-	inset: 0;
-	pointer-events: none;
+	inset: -8% 0 0;
 	z-index: -1;
-	opacity: 0.55;
-	background-image:
-		radial-gradient(1px 1px at 8% 22%, var(--sl-color-gray-2) 50%, transparent 51%),
-		radial-gradient(1px 1px at 21% 74%, var(--sl-color-gray-3) 50%, transparent 51%),
-		radial-gradient(1.5px 1.5px at 33% 12%, var(--sl-color-gray-2) 50%, transparent 51%),
-		radial-gradient(1px 1px at 44% 58%, var(--sl-color-gray-3) 50%, transparent 51%),
-		radial-gradient(1px 1px at 57% 31%, var(--sl-color-gray-2) 50%, transparent 51%),
-		radial-gradient(1.5px 1.5px at 68% 81%, var(--sl-color-gray-3) 50%, transparent 51%),
-		radial-gradient(1px 1px at 76% 9%, var(--sl-color-gray-2) 50%, transparent 51%),
-		radial-gradient(1px 1px at 88% 47%, var(--sl-color-gray-3) 50%, transparent 51%),
-		radial-gradient(1.5px 1.5px at 94% 76%, var(--sl-color-gray-2) 50%, transparent 51%),
-		radial-gradient(1px 1px at 14% 44%, var(--sl-color-gray-3) 50%, transparent 51%),
-		radial-gradient(1px 1px at 63% 64%, var(--sl-color-gray-3) 50%, transparent 51%),
-		radial-gradient(1px 1px at 81% 28%, var(--sl-color-gray-2) 50%, transparent 51%);
+	pointer-events: none;
+	background:
+		radial-gradient(50% 42% at 50% 34%, oklch(var(--pv-oiii) / 0.12), transparent 70%),
+		radial-gradient(46% 40% at 74% 20%, oklch(var(--pv-halpha) / 0.08), transparent 70%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	[data-has-hero] .hero::before {
+		animation: pv-glow-drift 18s ease-in-out infinite alternate;
+	}
+}
+
+@keyframes pv-glow-drift {
+	from { transform: translate3d(-1.5%, 0, 0) scale(1); }
+	to { transform: translate3d(1.5%, 1.5%, 0) scale(1.04); }
+}
+
+:root[data-theme='light'][data-has-hero] .hero::before {
+	background:
+		radial-gradient(50% 42% at 50% 34%, oklch(0.6 0.08 200 / 0.10), transparent 70%),
+		radial-gradient(46% 40% at 74% 20%, oklch(0.7 0.08 350 / 0.05), transparent 70%);
 }
 
 /* Platform line directly under the hero. */
 [data-has-hero] .pv-platforms {
-	margin-top: -0.5rem;
+	margin-top: 0.75rem;
 	text-align: center;
 	font-size: var(--sl-text-sm);
 	color: var(--sl-color-gray-3);
 }
 
-/* Scroll chapters: one idea + one screenshot per fold. Text is always the
- * left column and the screenshot is always the right one on wide viewports —
- * no per-chapter side alternation, so the eye tracks one shared column down
- * the page instead of zig-zagging. */
+/* Scroll chapters: one idea + one plate per fold, single tracking column
+ * (text left, plate right on wide viewports; never alternating). */
 [data-has-hero] .pv-chapter {
 	display: grid;
 	grid-template-columns: 1fr;
-	gap: 1.5rem 3rem;
+	gap: 1.75rem 3.5rem;
 	align-items: center;
-	margin-top: clamp(3rem, 9vh, 6rem);
+	margin-top: clamp(3.5rem, 10vh, 7rem);
 	text-align: left;
 }
 
@@ -125,44 +123,63 @@
 	max-width: 36rem;
 }
 
+/* Accented H2: a short teal top rule (not a side stripe), then the heading. */
 [data-has-hero] .pv-chapter-copy h2 {
 	font-size: var(--sl-text-h2);
-	line-height: 1.15;
+	line-height: 1.12;
+	margin-top: 0;
 	text-wrap: balance;
 }
 
+[data-has-hero] .pv-chapter-copy h2::before {
+	content: '';
+	display: block;
+	width: 2.75rem;
+	height: 2px;
+	margin-bottom: 1rem;
+	border-radius: 2px;
+	background: var(--sl-color-accent);
+	box-shadow: 0 0 14px oklch(var(--pv-oiii) / 0.4);
+}
+
+/* Chapter plate frame: a single subtle hairline border (no paired shadow). */
 [data-has-hero] .pv-chapter-shot img {
-	border: 1px solid var(--sl-color-gray-5);
-	border-radius: 10px;
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 12px;
 	width: 100%;
 	height: auto;
 }
 
-/* Closing boundary chapter: same left-aligned column and copy measure as the
- * chapters above it, not a separately centered treatment. */
+/* Closing boundary chapter: same left-aligned column and measure. */
 [data-has-hero] .pv-chapter--closing {
 	grid-template-columns: 1fr;
 }
 
 [data-has-hero] .pv-chapter--closing .pv-chapter-copy {
-	max-width: 36rem;
+	max-width: 40rem;
 }
 
-/* Reveal-on-scroll: content is visible by default (no-JS, and while the page
- * script hasn't run yet). The inline script in index.mdx adds `.reveal-init`
- * to <html> before the chapters are parsed, so this hidden state never
- * flashes over already-visible content, and prefers-reduced-motion drops
- * the effect entirely rather than only the transform. */
+/* Reveal-on-scroll: content is visible by default (no-JS and pre-hydration).
+ * RevealOnScroll.astro adds `.reveal-init` to <html> before chapters parse, so
+ * this hidden state never flashes over visible content, and it seeds
+ * `.is-visible` on any chapter already in the initial viewport so above-the-fold
+ * chapters never wait for a scroll event. prefers-reduced-motion drops the
+ * effect entirely (always-visible), not just the transform. */
 @media (prefers-reduced-motion: no-preference) {
-	html.reveal-init[data-has-hero] .pv-chapter {
+	html.reveal-init[data-has-hero] .pv-chapter > * {
 		opacity: 0;
-		transform: translateY(20px);
+		transform: translateY(24px);
 		transition:
-			opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-			transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+			opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+			transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
-	html.reveal-init[data-has-hero] .pv-chapter.is-visible {
+	/* Real intra-chapter stagger: the plate follows the copy in. */
+	html.reveal-init[data-has-hero] .pv-chapter .pv-chapter-shot {
+		transition-delay: 0.1s;
+	}
+
+	html.reveal-init[data-has-hero] .pv-chapter.is-visible > * {
 		opacity: 1;
 		transform: none;
 	}

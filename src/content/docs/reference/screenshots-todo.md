@@ -24,12 +24,9 @@ Capture rules:
 
 ## Landing page
 
-- [ ] **landing-hero** — `index.mdx` hero.
-      Where: the main window on a populated library.
-      Stage: shared staging baseline with sessions, targets, and a project
-      visible so the shot reads as "the app at work".
-      Must show: the full application window (window chrome cropped),
-      wide enough that navigation and real library content are legible.
+The landing hero is an inline SVG "plate" motif in `index.mdx` (a deliberate
+decorative panel, not a screenshot), so it has no capture entry here. The
+chapter images below are still placeholders to be replaced.
 
 ## Setup wizard & library roots
 

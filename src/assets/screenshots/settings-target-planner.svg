@@ -1,5 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="Screenshot: Settings — Target Planner sites and Moon-avoidance bands (TODO)">
-  <rect width="1280" height="800" fill="#d9dce1"/>
-  <rect x="1" y="1" width="1278" height="798" fill="none" stroke="#9aa0ab" stroke-width="2" stroke-dasharray="12 8"/>
-  <text x="50%" y="50%" font-family="system-ui, sans-serif" font-size="28" fill="#4b5160" text-anchor="middle" dominant-baseline="middle">Screenshot: Settings — Target Planner sites and Moon-avoidance bands (TODO)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="Screenshot placeholder: Settings Target Planner sites and Moon-avoidance bands.">
+  <defs>
+    <radialGradient id="plate" cx="50%" cy="42%" r="78%">
+      <stop offset="0%" stop-color="#141b26"/>
+      <stop offset="100%" stop-color="#0c1017"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="800" rx="14" fill="url(#plate)"/>
+  <rect x="1.5" y="1.5" width="1277" height="797" rx="13" fill="none" stroke="#4fd6e6" stroke-opacity="0.22"/>
+  <g stroke="#4fd6e6" stroke-opacity="0.8" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path d="M40 78V40H78"/><path d="M1202 40h38v38"/>
+    <path d="M40 722v38h38"/><path d="M1202 760h38v-38"/>
+  </g>
+  <circle cx="120" cy="140" r="2" fill="#dbe6ee" fill-opacity="0.8"/><circle cx="300" cy="90" r="1.4" fill="#dbe6ee" fill-opacity="0.5"/><circle cx="520" cy="200" r="1.8" fill="#dbe6ee" fill-opacity="0.7"/><circle cx="740" cy="120" r="1.4" fill="#dbe6ee" fill-opacity="0.55"/><circle cx="960" cy="180" r="2" fill="#dbe6ee" fill-opacity="0.75"/><circle cx="1120" cy="110" r="1.4" fill="#dbe6ee" fill-opacity="0.5"/><circle cx="180" cy="360" r="1.6" fill="#dbe6ee" fill-opacity="0.6"/><circle cx="420" cy="520" r="1.4" fill="#dbe6ee" fill-opacity="0.45"/><circle cx="880" cy="560" r="1.8" fill="#dbe6ee" fill-opacity="0.7"/><circle cx="1080" cy="430" r="1.4" fill="#dbe6ee" fill-opacity="0.5"/><circle cx="640" cy="640" r="1.6" fill="#dbe6ee" fill-opacity="0.55"/><circle cx="240" cy="660" r="1.4" fill="#dbe6ee" fill-opacity="0.5"/><circle cx="1180" cy="640" r="1.6" fill="#dbe6ee" fill-opacity="0.6"/><circle cx="80" cy="520" r="1.4" fill="#dbe6ee" fill-opacity="0.45"/><circle cx="1000" cy="700" r="1.4" fill="#dbe6ee" fill-opacity="0.5"/>
+  <g stroke="#5fe3ee" fill="none">
+    <circle cx="640" cy="380" r="70" stroke-opacity="0.20" stroke-width="1.5"/>
+    <circle cx="640" cy="380" r="120" stroke-opacity="0.13" stroke-width="1.5" stroke-dasharray="3 10"/>
+    <path d="M640 150V356M640 404V650" stroke-opacity="0.28" stroke-width="1.5"/>
+    <path d="M170 380h446M664 380h446" stroke-opacity="0.28" stroke-width="1.5"/>
+    <path d="M628 380h24M640 368v24" stroke-opacity="0.65" stroke-width="2"/>
+  </g>
+  <text x="60" y="748" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" letter-spacing="1" fill="#6fe0ea">PlateVault · Settings · planner</text>
+  <text x="1220" y="72" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" letter-spacing="3" fill="#7c93a3">PLATE</text>
 </svg>

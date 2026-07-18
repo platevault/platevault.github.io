@@ -11,7 +11,12 @@
 <script is:inline>
 	document.documentElement.classList.add('reveal-init');
 	document.addEventListener('DOMContentLoaded', () => {
-		if (!('IntersectionObserver' in window)) return;
+		const chapters = document.querySelectorAll('[data-has-hero] .pv-chapter');
+		// No IntersectionObserver: reveal everything so nothing is stranded.
+		if (!('IntersectionObserver' in window)) {
+			chapters.forEach((el) => el.classList.add('is-visible'));
+			return;
+		}
 		const io = new IntersectionObserver(
 			(entries) => {
 				for (const entry of entries) {
@@ -20,8 +25,17 @@
 					io.unobserve(entry.target);
 				}
 			},
-			{ rootMargin: '0px 0px -25% 0px' }
+			{ rootMargin: '0px 0px -15% 0px' }
 		);
-		document.querySelectorAll('[data-has-hero] .pv-chapter').forEach((el) => io.observe(el));
+		chapters.forEach((el) => {
+			// Seed any chapter already in the initial viewport so it renders on
+			// load instead of waiting for a scroll; only below-the-fold
+			// chapters animate in on intersection.
+			if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+				el.classList.add('is-visible');
+			} else {
+				io.observe(el);
+			}
+		});
 	});
 </script>
