@@ -14,7 +14,7 @@ after installation are handled in-app by the signature-verified
 | --- | --- |
 | Windows x64 | `PlateVault_{version}_x64-setup.exe` (NSIS) or `PlateVault_{version}_x64_en-US.msi` |
 | Linux x64 | `PlateVault_{version}_amd64.AppImage`, `PlateVault_{version}_amd64.deb`, or `PlateVault-{version}-1.x86_64.rpm` |
-| macOS Apple Silicon | `PlateVault_{version}_aarch64.dmg` |
+| macOS Apple Silicon | `PlateVault_{version}_aarch64.dmg`, or via [Homebrew](#macos-apple-silicon) |
 
 ## Windows
 
@@ -50,16 +50,28 @@ Pick the format your distribution prefers:
 
 ## macOS (Apple Silicon)
 
+PlateVault only builds for Apple Silicon (arm64) — there is no Intel build.
+
+**Homebrew** (easiest if you already use it):
+
+```sh
+brew tap platevault/tap
+brew install --cask platevault
+```
+
+**Manual download:**
+
 1. Download the `aarch64` dmg and drag PlateVault into **Applications**.
 2. On first launch, right-click (or Control-click) the app in Applications
    and choose **Open**, then confirm — this is the standard Gatekeeper step
    for an app distributed outside the App Store without notarization, and
-   it is only needed once.
+   it is only needed once. This applies whether you installed via Homebrew
+   or the dmg: the app is ad-hoc-signed, not notarized.
 
-:::note[Roadmap]
-macOS distribution via a Homebrew cask. See the
-[Roadmap](../../reference/roadmap/).
-:::
+After install, the in-app [updater](../../manual/updater/) — not
+`brew upgrade` — is what keeps PlateVault current; the cask is marked
+`auto_updates true` and its version is bumped automatically after each
+release.
 
 ## Verifying a download
 

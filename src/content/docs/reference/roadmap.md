@@ -53,4 +53,3 @@ describes what comes next, with no dates and no ordering promises.
 
 - **Staged updates** — download and verify an update immediately, restart
   and install when you choose.
-- **Homebrew cask** — macOS installation and upgrades via Homebrew.
