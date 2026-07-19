@@ -2,12 +2,12 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-// site/base target the default GitHub Pages project-site URL for this repo.
-// This is a TEMPORARY home (see README) — if it moves to a custom domain,
-// its own org, or an org root site, update both (base becomes '/').
+// site/base target the org root site: this repo is named <org>.github.io, so
+// Pages serves it at the org root and base is '/'. If it later moves to a
+// custom domain, update site and keep base at '/'.
 export default defineConfig({
-	site: 'https://nightwatch-astro.github.io',
-	base: '/platevault-docs',
+	site: 'https://platevault.github.io',
+	base: '/',
 	integrations: [
 		starlight({
 			title: 'PlateVault',

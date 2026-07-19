@@ -4,7 +4,7 @@ description: Download and run PlateVault on Windows, Linux, or Apple Silicon mac
 ---
 
 PlateVault ships from the
-[GitHub Releases page](https://github.com/nightwatch-astro/alm/releases/latest).
+[GitHub Releases page](https://github.com/platevault/platevault/releases/latest).
 Download the asset for your platform, install it, and launch — the
 [setup wizard](../../manual/setup-wizard/) takes over from there. Updates
 after installation are handled in-app by the signature-verified

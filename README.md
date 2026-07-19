@@ -1,11 +1,12 @@
 # PlateVault Docs
 
-Source for the [PlateVault](https://github.com/nightwatch-astro/alm) documentation site, built with [Astro Starlight](https://starlight.astro.build); it lives in its own repo (separate from the `alm` app monorepo) so it can move to its own domain or org later without dragging the app's history along.
+Source for the [PlateVault](https://github.com/platevault/platevault) documentation site, built with [Astro Starlight](https://starlight.astro.build); it lives in its own repo (separate from the app monorepo) so it can move independently without dragging the app's history along.
 
-This repo (`nightwatch-astro/platevault-docs`) is a **temporary home**: it may
-move to its own domain, its own org, or get renamed again. Internal links in
-content stay relative (`/manual/...`, `/how-to/...`); the GitHub Pages
-`site`/`base` URL is only hardcoded once, in `astro.config.mjs`.
+This repo is named `platevault.github.io`, so GitHub Pages serves it at the org
+root — <https://platevault.github.io> — and `base` is `/`. Internal links in
+content stay relative (`/manual/...`, `/how-to/...`); the Pages `site`/`base`
+URL is hardcoded only once, in `astro.config.mjs`. A future move to a custom
+domain changes `site` and leaves everything else alone.
 
 ## Development
 
@@ -47,7 +48,7 @@ fires the dispatch:
 - name: Notify docs repo of release
   if: steps.release.outputs.release_created == 'true'
   run: |
-    gh api repos/nightwatch-astro/platevault-docs/dispatches \
+    gh api repos/platevault/platevault.github.io/dispatches \
       -f event_type=platevault-released \
       -f "client_payload[version]=${{ steps.release.outputs.tag_name }}"
   env:
