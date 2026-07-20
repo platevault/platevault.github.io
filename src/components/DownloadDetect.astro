@@ -1,0 +1,59 @@
+---
+// Handoff 07: client-side OS-detect for the "Download PlateVault" buttons.
+// Matches by the pre-rendered generic releases/latest href (decoupled from
+// Starlight's internal hero/LinkButton markup, which we don't own), so
+// no-JS visitors and any fetch/parse failure fall back to that same
+// generic releases page — this only ever narrows the link, never breaks it.
+---
+
+<script is:inline>
+	(async () => {
+		const GENERIC_HREF = 'https://github.com/platevault/platevault/releases/latest';
+		const OS_ASSET = {
+			windows: { label: 'Windows', suffix: '_x64-setup.exe' },
+			macos: { label: 'macOS', suffix: '_aarch64.dmg' },
+			linux: { label: 'Linux', suffix: '_amd64.AppImage' },
+		};
+
+		function detectOs() {
+			const uaDataPlatform = navigator.userAgentData?.platform;
+			const platform = (uaDataPlatform || navigator.platform || navigator.userAgent || '').toLowerCase();
+			if (platform.includes('win')) return 'windows';
+			if (platform.includes('mac')) return 'macos';
+			if (platform.includes('linux') && !platform.includes('android')) return 'linux';
+			return null;
+		}
+
+		const os = detectOs();
+		if (!os) return;
+		const { label, suffix } = OS_ASSET[os];
+
+		const links = [...document.querySelectorAll(`a[href="${GENERIC_HREF}"]`)];
+		if (links.length === 0) return;
+
+		let assetUrl;
+		try {
+			const res = await fetch('https://api.github.com/repos/platevault/platevault/releases/latest');
+			if (!res.ok) return;
+			const release = await res.json();
+			const asset = release.assets?.find((a) => a.name.endsWith(suffix));
+			assetUrl = asset?.browser_download_url;
+		} catch {
+			return;
+		}
+		if (!assetUrl) return;
+
+		for (const link of links) {
+			link.href = assetUrl;
+			// Only relabel buttons whose whole text is the generic copy — avoid
+			// mangling any link that happens to also point at the releases page
+			// but reads differently (defensive; today all matches are the
+			// "Download..." buttons).
+			for (const node of link.childNodes) {
+				if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+					node.textContent = node.textContent.replace(/^\s*Download\b.*$/, `Download for ${label}`);
+				}
+			}
+		}
+	})();
+</script>

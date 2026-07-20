@@ -27,12 +27,31 @@
 	grid-template-columns: 1fr;
 	width: 100vw;
 	margin-inline: calc(50% - 50vw);
+	min-height: 400px;
 	padding-block: clamp(2.75rem, 9vh, 6rem);
 	padding-inline: clamp(1rem, 4vw, 2rem);
 	text-align: center;
 	isolation: isolate;
 	/* Clip the glow bloom so it never adds horizontal scroll. */
 	overflow: clip;
+}
+
+/* Handoff 07 (BrandAssets.dc.html §06): fade the hero's bottom 46% into the
+ * page background so it reads as one continuous surface, not a hard-edged
+ * band. z-index:-1 (same stacking context as .hero::before, via
+ * isolation:isolate above) keeps it strictly behind all hero content —
+ * headline, tagline, actions, plate art — so it only softens the
+ * background, never dims foreground text/buttons. */
+[data-has-hero] .hero::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 46%;
+	z-index: -1;
+	pointer-events: none;
+	background: linear-gradient(to bottom, transparent, var(--sl-color-bg));
 }
 
 [data-has-hero] .hero .stack,
