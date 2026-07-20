@@ -8,7 +8,10 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "brand:favicons": "node scripts/brand/generate-favicons.mjs",
+    "brand:og-image": "node scripts/brand/generate-og-image.mjs",
+    "brand:lockup": "node scripts/brand/generate-lockup.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.41.3",
@@ -16,5 +19,9 @@
     "@fontsource-variable/space-grotesk": "^5.2.10",
     "astro": "^7.0.2",
     "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@fontsource/space-grotesk": "^5.3.0",
+    "fontkit": "^2.0.4"
   }
 }
