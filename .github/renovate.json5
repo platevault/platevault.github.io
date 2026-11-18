@@ -1,0 +1,47 @@
+// Renovate config. This repo has no CI workflow that runs on pull_request, so nothing
+// automerges: every update waits for a human. Add a pull_request check, then opt in
+// with the automerge rules from a repo that has one.
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:recommended", "helpers:pinGitHubActionDigests"],
+  timezone: "Asia/Dubai",
+  schedule: ["before 6am on Monday"],
+  dependencyDashboard: { enabled: true }, // the "Dependency Dashboard" issue
+  prConcurrentLimit: 5,
+  prHourlyLimit: 2,
+  // Off by default; the packageRules below opt in.
+  automerge: false,
+  // Renovate merges the PR itself, only after it sees passing checks. GitHub native
+  // auto-merge would merge at once when the branch has no required status checks.
+  platformAutomerge: false,
+  automergeType: "pr",
+  // Default, kept explicit: with no status checks at all Renovate does not automerge.
+  ignoreTests: false,
+  // Skip versions younger than minimumReleaseAge instead of opening a PR with them.
+  internalChecksFilter: "strict",
+  // Wait for a release to age, so a freshly published malicious version is not proposed.
+  minimumReleaseAge: "3 days",
+  labels: ["dependencies"],
+  // Renovate opens PRs for Dependabot security alerts (alerts on; Dependabot version updates off).
+  vulnerabilityAlerts: { labels: ["security"] },
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ["before 6am on the first day of the month"],
+    automerge: false,
+    // A refreshed lock file has no release timestamps, so the age check would hold it forever.
+    minimumReleaseAge: null,
+  },
+  packageRules: [
+    {
+      description: "GitHub Actions",
+      groupName: "github actions",
+      matchManagers: ["github-actions"],
+    },
+    {
+      description: "Major updates open their own PR (separateMajorMinor) and carry a label",
+      matchUpdateTypes: ["major"],
+      labels: ["dependencies", "major"],
+      automerge: false,
+    },
+  ],
+}
